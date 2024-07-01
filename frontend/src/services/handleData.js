@@ -46,7 +46,8 @@ class DataSet {
 
         const breakdownsData = {}
         const dates = newUserRecords.reduce((accumulator, current) => {
-            return [...accumulator, current.Date]
+            const dateObject = new Date(current.Date)
+            return [...accumulator, `${(dateObject.getMonth() + 1).toString().padStart(2, '0')}.${dateObject.getDate().toString().padStart(2, '0')}`]
         }, [])
 
         for (let singleRecord of newUserRecords) {
@@ -55,7 +56,7 @@ class DataSet {
 
             for (let breakdown of breakdowns) {
                 if (!breakdownsData[breakdown]) { breakdownsData[breakdown] = [] }
-                breakdownsData[breakdown].push(this.calculateByBreakdown(singleRecord.Date, breakdown) * koeff)
+                breakdownsData[breakdown].push(Math.round(this.calculateByBreakdown(singleRecord.Date, breakdown) * koeff))
             }
         }
 
