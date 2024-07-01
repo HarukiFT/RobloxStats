@@ -12,22 +12,22 @@ class DataSet {
     }
 
     calculateByBreakdown(date, breakdown) {
-        const newUserRecord = this.#newUsers.filter(record => {
+        const newUserRecord = parseInt(this.#newUsers.filter(record => {
             return (record.Breakdown == breakdown && record.Date == date)
-        })[0]['Unique Users with Plays']
+        })[0]['Unique Users with Plays'])
 
-        const returnUserRecord = this.#returningUsers.filter(record => {
+        const returnUserRecord = parseInt(this.#returningUsers.filter(record => {
             return (record.Breakdown == breakdown && record.Date == date)
-        })[0]['Unique Users with Plays']
+        })[0]['Unique Users with Plays'])
 
         return newUserRecord + returnUserRecord
     }
 
     calculateKoeff(date) {
         const visits = this.calculateByBreakdown(date, 'Total')
-        const sessionRecord = this.#sessions.filter(record => {
+        const sessionRecord = parseInt(this.#sessions.filter(record => {
             return (record.Date == date && record.Breakdown == 'Total')
-        })[0].Sessions
+        })[0].Sessions)
 
         return sessionRecord / visits
     }
