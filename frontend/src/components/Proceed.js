@@ -6,7 +6,7 @@ import DataSet from '../services/handleData'
 export default () => {
     const dataContext = useDataContext()
 
-    const validate = () => {
+    const validateExist = () => {
         for (let entry of Object.entries(dataContext.csvData)) {
             if (!entry[1]) return false;
         }
@@ -14,10 +14,15 @@ export default () => {
         return true
     }
 
-    const handleClick = () => {
-        if (!validate()) return toast.error('Загрузи все данные!');
 
+    const handleClick = () => {
+        if (!validateExist()) return toast.error('Загрузи все данные!');
         const blob = new DataSet(dataContext.csvData.newUsers, dataContext.csvData.returningUsers, dataContext.csvData.sessions).proceed()
+
+        if (!blob) {
+            return toast.error('Таймфреймы не совпадают!')
+        }
+
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.setAttribute('download', 'data.csv');
