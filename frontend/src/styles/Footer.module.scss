@@ -1,14 +1,42 @@
 .footer {
+    display: flex;
+
     position: absolute;
-    bottom: 0;
-    
+    bottom: 0px;
     width: 100%;
     background-color: rgba(0, 0, 0, .9);
 
-    p {
+    > a {
+        position: relative;
+
+        text-decoration: none;
         color: white;
         font-size: 1.5em;
+        padding: .4em .5em;
 
-        padding: .25em .5em;
+        &::before {
+            position: absolute;
+            font-size: inherit;
+            content: "❤️‍🔥";
+            left: 90%;
+            bottom: 50%;
+
+            transform: translateY(50%);
+        }
+
+        &::after {
+            position: absolute;
+            width: 65%;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: rgb(228, 54, 54);
+            
+            left: 50%;
+            transform: translateX(-50%);
+
+            content: "";
+
+        }
     }
 }
