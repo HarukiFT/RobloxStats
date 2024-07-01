@@ -15,7 +15,8 @@ export default ({ zoneId, display }) => {
             if (file.type != 'text/csv') return toast.error('Только файлы .csv!');
             const reader = new FileReader();
             reader.onload = () => {
-                const text = reader.result;
+                const text = reader.result.split('\n').slice(2).join('\n');
+                console.log(text)
                 parse(text, {
                     header: true,
                     complete: (results) => {
@@ -45,8 +46,8 @@ export default ({ zoneId, display }) => {
         },
 
         to: {
-            bottom: isDragActive ? '-2em' : '0em',
-            opacity: isDragActive ? 1 : 0,
+            bottom: (isDragActive || dataContext.csvData[zoneId]) ? '-2em' : '0em',
+            opacity: (isDragActive || dataContext.csvData[zoneId]) ? 1 : 0,
             
         }
     })
