@@ -12,13 +12,13 @@
 .proceedButton {
     padding: .5em 1.5em;
     font-size: 1.5em;
-
-    border: 2px solid rgba(0, 0, 0, .75);
+    font-weight: 500;
+    
     border-radius: .25em;
 
     transition: transform .15s;
-    color: white;
-    background-color: #e75437;
+    color: rgb(38, 38, 38);
+    background: none;
 
     &:hover {
         transform: scale(.97);
