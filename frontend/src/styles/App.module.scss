@@ -14,13 +14,14 @@
         margin: 0;
         padding: 0;
 
-        margin-bottom: 10px;
+        margin-bottom: 2.5%;
     }
 
     .zonesHolder {
         width: 65%;
-        height: 50%;
+        height: 30%;
 
         display: flex;
+        justify-content: space-around;
     }
 }
