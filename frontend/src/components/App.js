@@ -1,5 +1,6 @@
 import Styles from '../styles/App.module.scss'
 import DropZone from './DropZone'
+import Footer from './Footer'
 import Proceed from './Proceed'
 
 export default () => {
@@ -14,6 +15,7 @@ export default () => {
             </div>
 
             <Proceed/>
+            <Footer/>
         </div>
     )
 }
