@@ -9,10 +9,6 @@ const DataContextProvider = ({ children }) => {
         sessions: undefined
     })
 
-    useEffect(() => {
-        console.log(csvData)
-    }, [csvData])
-
     const setData = (key, value) => {
         setCsvData({
             ...csvData,

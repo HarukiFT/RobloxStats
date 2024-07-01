@@ -52,7 +52,6 @@ class DataSet {
 
         for (let singleRecord of newUserRecords) {
             const koeff = this.calculateKoeff(singleRecord.Date)
-            console.log(koeff)
 
             for (let breakdown of breakdowns) {
                 if (!breakdownsData[breakdown]) { breakdownsData[breakdown] = [] }
