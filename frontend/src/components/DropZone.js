@@ -6,6 +6,17 @@ import { animated, useSpring } from 'react-spring'
 import { toast } from 'react-toastify'
 import { useDataContext } from '../contexts/DataContext'
 import { parse } from 'papaparse'
+import newUsersValidator from '../validators/newUsersValidator'
+import sessionsValidator from '../validators/sessionsValidator'
+import returningUsersValidator from '../validators/returningUsersValidator'
+
+//validators
+
+const validators = {
+    newUsers: newUsersValidator,
+    sessions: sessionsValidator,
+    returningUsers: returningUsersValidator
+}
 
 export default ({ zoneId, display }) => {
     const dataContext = useDataContext()
@@ -20,6 +31,7 @@ export default ({ zoneId, display }) => {
                 parse(text, {
                     header: true,
                     complete: (results) => {
+                        if (!validators[zoneId](results.data)) return toast.error('.csv должно быть валидным!');
                         dataContext.setData(zoneId, results.data);
                     }
                 });
