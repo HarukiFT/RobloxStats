@@ -32,7 +32,19 @@ class DataSet {
         return sessionRecord / visits
     }
 
+    validateTimeframe() {
+        const newUsersDates = this.#newUsers.reduce((count, record) => { return record.Breakdown == 'Total' ? count + 1 : count }, 0)
+        const returningUsersDates = this.#returningUsers.reduce((count, record) => { return record.Breakdown == 'Total' ? count + 1 : count }, 0)
+        const sessionsDates = this.#sessions.reduce((count, record) => { return record.Breakdown == 'Total' ? count + 1 : count }, 0)
+
+        return (newUsersDates != returningUsersDates || newUsersDates != sessionsDates || returningUsersDates != sessionsDates)
+    }
+
     proceed() {
+        if (this.validateTimeframe()) {
+            return false
+        }
+
         const newUserRecords = this.#newUsers.filter(record => {
             return (record.Breakdown == 'Total')
         }).sort((a, b) => {
