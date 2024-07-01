@@ -1,5 +1,6 @@
 import Styles from '../styles/App.module.scss'
 import DropZone from './DropZone'
+import Proceed from './Proceed'
 
 export default () => {
     return (
@@ -11,6 +12,8 @@ export default () => {
                 <DropZone zoneId={'returningUsers'} display={'Вернувшиеся игроки'}/>
                 <DropZone zoneId={'sessions'} display={'Сессии'}/>
             </div>
+
+            <Proceed/>
         </div>
     )
 }
