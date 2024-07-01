@@ -32,8 +32,6 @@ export default () => {
         document.body.removeChild(link)
 
         // Reset data
-        const clearMap = {}
-
         dataContext.setCsvData(Object.fromEntries(Object.entries(dataContext.csvData).map(([key, ]) => {
             return [key, null]
         })))
